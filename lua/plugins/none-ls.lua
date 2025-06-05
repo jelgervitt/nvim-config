@@ -9,7 +9,7 @@ return {
 		local null_ls = require("null-ls")
 
 		null_ls.setup({
-			-- debug = true,
+			debug = true,
 
 			sources = {
 				-- Formatters
@@ -28,15 +28,17 @@ return {
 					extra_args = { "--tab-width", "4" },
 				}),
 				-- Diagnostics
-				require("none-ls.diagnostics.eslint_d"),
-				require("none-ls.code_actions.eslint_d"),
+				require("none-ls.diagnostics.eslint").with({
+					extra_args = { "--format", "json", "--no-color" },
+				}),
+				require("none-ls.code_actions.eslint"),
 			},
 		})
 
 		-- Format on save
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			callback = function()
-				if vim.bo.filetype == "php" then
+				if vim.bo.filetype == "php" or vim.bo.filetype == "markdown" then
 					return
 				end
 				vim.lsp.buf.format({

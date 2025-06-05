@@ -11,7 +11,7 @@ return {
 		delete_to_trash = true,
 		watch_for_changes = true,
 
-		view_options = { show_hidden = true },
+		view_options = { show_hidden = false },
 	},
 	keymaps = {
 		vim.keymap.set("n", "<leader>e", function()

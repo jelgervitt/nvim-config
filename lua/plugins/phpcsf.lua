@@ -10,7 +10,7 @@ return {
 		-- format after save
 		vim.api.nvim_create_augroup("PHBSCF", { clear = true })
 
-		vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+		vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost"  }, {
 			group = "PHBSCF",
 			pattern = "*.php",
 			callback = function()
