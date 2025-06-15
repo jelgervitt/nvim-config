@@ -28,6 +28,7 @@ return { -- Collection of various small independent plugins/modules
 		require("mini.icons").setup({})
 		require("mini.git").setup({})
 		require("mini.diff").setup({})
+		require("mini.move").setup({})
 
 		-- Simple and easy statusline.
 		--  You could remove this *setup* call if you don't like it,

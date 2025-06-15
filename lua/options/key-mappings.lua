@@ -23,6 +23,7 @@ map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map("n", "0", "g0")
 map("n", "$", "g$")
 map("i", "<D-b>", "**", { desc = "Bold text" })
+map({ "n", "i" }, "<D-s>", "<cmd>w<cr>", { desc = "[S]ave buffer" })
 
 -- buffer and window mappings
 local wk = require("which-key")

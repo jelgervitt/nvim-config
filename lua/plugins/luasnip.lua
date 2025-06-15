@@ -10,50 +10,58 @@ return {
 		})
 
 		require("luasnip.loaders.from_vscode").lazy_load() -- loads friendly-snippets
-		local luasnip = require("luasnip")
-		local snippet = luasnip.snippet
-		local text = luasnip.text_node
-		local snip_insert = luasnip.insert_node
-		local snip_function = luasnip.function_node
+		local ls = require("luasnip")
+		local s = ls.snippet
+		local t = ls.text_node
+		local i = ls.insert_node
+		local f = ls.function_node
 		-- local filename = vim.fn.expand("%:t:r")
 
-		luasnip.add_snippets("markdown", {
-			snippet("link", {
-				text("["),
-				snip_insert(1, "link text"),
-				text("]("),
-				snip_insert(2, ""),
-				text(")"),
+		local markdown_snippets = {
+			s("checkbox", {
+				t("- [ ] "),
+				i(1),
 			}),
-		})
 
-		luasnip.add_snippets("markdown", {
-			snippet("ch", {
-				text("- [ ] "),
+			s("link", {
+				t("["),
+				i(1, "link to"),
+				t("]("),
+				i(2, ""),
+				t(")"),
 			}),
-		})
 
-		luasnip.add_snippets("markdown", {
-			snippet("start", {
-				text("Start time: "),
-				snip_function(function()
+			s("start", {
+				t("Start time: "),
+				f(function()
 					return os.date("%H:%M")
 				end, {}),
-				text({ "", "End time: " }),
+				t({ "", "End time: " }),
 			}),
-		})
+		}
 
-		-- luasnip.add_snippets("javascriptreact", {
-		-- 	snippet("rfc", {
-		-- 		text("function "),
-		-- 		snip_insert(1, filename),
-		-- 		text({ "() {", "\treturn (" }),
-		-- 		text({ "", "\t\t<div>" }),
-		-- 		text({ "", "\t\t\t" }),
-		-- 		snip_insert(0),
-		-- 		text({ "", "\t\t</div>", "\t)", "}", "", "export default " }),
-		-- 		snip_insert(1),
-		-- 	}),
-		-- })
+		local javascript_snippets = {
+			s("arrow_function", {
+				t("("),
+				i(1),
+				t(") => { "),
+				i(2),
+				t(" }"),
+			}),
+		}
+
+		local javascriptreact_snippets = {
+			s("arrow_function", {
+				t("("),
+				i(1),
+				t(") => { "),
+				i(2),
+				t(" }"),
+			}),
+		}
+
+		ls.add_snippets("markdown", markdown_snippets)
+		ls.add_snippets("javascript", javascript_snippets)
+		ls.add_snippets("javascriptreact", javascriptreact_snippets)
 	end,
 }
